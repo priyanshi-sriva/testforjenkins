@@ -4,8 +4,11 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh "./test.sh"
+                echo "./test.sh"
             }
+        }
+        stage('SendNotification') {
+                
         }
 }
 }
