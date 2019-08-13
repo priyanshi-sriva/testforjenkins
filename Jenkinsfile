@@ -27,23 +27,23 @@ node{
         Boolean isValid = true
         long deploydate = System.currentTimeMillis();
         Map app
-        stage('PreDeploy'){
-            Util = load 'infrak8s_repo/Util.groovy'
-            Util.init(this)
-            if(environment) {
-            app = Util.getConfig(service_name, 'infrak8s_repo/config.json')
-        }
-        }
+        //stage('PreDeploy'){
+        //    Util = load 'infrak8s_repo/Util.groovy'
+        //    Util.init(this)
+        //    if(environment) {
+        //    app = Util.getConfig(service_name, 'infrak8s_repo/config.json')
+       // }
+       // }
         stage('Deploy'){
             echo ". /etc/profile > /dev/null 2>&1 ; kubectl config use-context devqa"
             tokenid="devtoken"
         }
-        def getimagecmd= / kubectl get deployment $deployment_name -o=jsonpath='{$.spec.template.spec.containers[0].image } ' -n $environment /
-        def imagename=sh(script: ". /etc/profile > /dev/null 2>&1 ; ${getimagecmd}", returnStdout: true).trim()
-        def imagetag=imagename.split(":")[1]
+        echo "def getimagecmd= / kubectl get deployment $deployment_name -o=jsonpath='{$.spec.template.spec.containers[0].image } ' -n $environment /"
+        echo "def imagename=sh(script: ". /etc/profile > /dev/null 2>&1 ; ${getimagecmd}", returnStdout: true).trim()"
+        echo "def imagetag=imagename.split(":")[1]"
     
-        if (release_tag == imagetag){
-            def command = / kubectl patch deployment $deployment_name -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"$deploydate\"}}}}}" -n $environment /
+        if (release_tag == 'latest'){
+            echo "def command = / kubectl patch deployment $deployment_name -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"$deploydate\"}}}}}" -n $environment /"
             echo ". /etc/profile  > /dev/null 2>&1 ; $command"
             echo ". /etc/profile > /dev/null 2>&1 ; kubectl rollout status deployment $deployment_name -n $environment"
         }else{
