@@ -7,8 +7,6 @@ pipeline {
                 echo "./test.sh"
             }
         }
-        stage('SendNotification') {
-                
-        }
+        
 }
 }
