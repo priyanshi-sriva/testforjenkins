@@ -40,7 +40,7 @@ node{
             tokenid="devtoken"
         }
         echo "def getimagecmd= / kubectl get deployment '$deployment_name' -o=jsonpath='{$spec.template.spec.containers[0].image } ' -n '$environment' /"
-        echo "def imagename=sh(script: ". /etc/profile > /dev/null 2>&1 ; ${getimagecmd}", returnStdout: true).trim()"
+        echo "def imagename=sh(script: "./etc/profile > /dev/null 2>&1 ; ${getimagecmd}", returnStdout: true).trim()"
         echo "def imagetag=imagename.split(":")[1]"
     
         if (release_tag == 'latest'){
