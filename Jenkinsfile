@@ -27,13 +27,14 @@ node{
         Boolean isValid = true
         long deploydate = System.currentTimeMillis();
         Map app
-        //stage('PreDeploy'){
-        //    Util = load 'infrak8s_repo/Util.groovy'
-        //    Util.init(this)
-        //    if(environment) {
-        //    app = Util.getConfig(service_name, 'infrak8s_repo/config.json')
-       // }
-       // }
+        stage('PreDeploy'){
+            echo "Util = load 'infrak8s_repo/Util.groovy'"
+            echo "Util.init(this)"
+            if(environment) {
+            echo "app = Util.getConfig(service_name, 'infrak8s_repo/config.json')"
+               
+        }
+        }
         stage('Deploy'){
             echo ". /etc/profile > /dev/null 2>&1 ; kubectl config use-context devqa"
             tokenid="devtoken"
