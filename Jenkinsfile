@@ -10,7 +10,6 @@
 //}
 //}
 
-<<<<<<< HEAD
 
 node{
     try{
@@ -58,14 +57,4 @@ node{
     throw e
     }
 return this
-=======
-    stages {
-        stage('Build') {
-            steps {
-                echo "./test.sh"
-            }
-        }
-        
-}
->>>>>>> 64245dab53063af9f5f2d08f787da08d629fda63
 }
