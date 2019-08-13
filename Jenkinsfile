@@ -43,7 +43,7 @@ node{
         echo "def imagetag=imagename.split(":")[1]"
     
         if (release_tag == 'latest'){
-            echo "def command = / kubectl patch deployment $deployment_name -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"$deploydate\"}}}}}" -n $environment /"
+           // echo "def command = / kubectl patch deployment $deployment_name -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"$deploydate\"}}}}}" -n $environment /"
             echo ". /etc/profile  > /dev/null 2>&1 ; $command"
             echo ". /etc/profile > /dev/null 2>&1 ; kubectl rollout status deployment $deployment_name -n $environment"
         }else{
