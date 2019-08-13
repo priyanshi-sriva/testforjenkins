@@ -44,11 +44,13 @@ node{
     
         if (release_tag == 'latest'){
            // echo "def command = / kubectl patch deployment $deployment_name -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"$deploydate\"}}}}}" -n $environment /"
-            echo ". /etc/profile  > /dev/null 2>&1 ; $command"
-            echo ". /etc/profile > /dev/null 2>&1 ; kubectl rollout status deployment $deployment_name -n $environment"
+           // echo ". /etc/profile  > /dev/null 2>&1 ; $command"
+           // echo ". /etc/profile > /dev/null 2>&1 ; kubectl rollout status deployment $deployment_name -n $environment"
+            echo "latest"
         }else{
-            echo ". /etc/profile > /dev/null 2>&1 ; kubectl set image deployment $deployment_name $container_name=$image:$release_tag --record -n $environment"
-            echo ". /etc/profile > /dev/null 2>&1 ; kubectl rollout status deployment $deployment_name -n $environment"
+            //echo ". /etc/profile > /dev/null 2>&1 ; kubectl set image deployment $deployment_name $container_name=$image:$release_tag --record -n $environment"
+            //echo ". /etc/profile > /dev/null 2>&1 ; kubectl rollout status deployment $deployment_name -n $environment"
+            echo "not latest"
         }
         stage('post_deploy') {
         }
